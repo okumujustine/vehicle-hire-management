@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "crispy_bulma",
 
     'user',
-    'dashboard'
+    'dashboard',
+    'vehicle',
 ]
 
 MIDDLEWARE = [
