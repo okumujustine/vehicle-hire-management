@@ -1,10 +1,9 @@
-from django.contrib import admin
 from django.urls import path
 
 from customer.views import customer_list
 
-app_name = 'customer_app'
+app_name = "customer_app"
 
 urlpatterns = [
-    path('list', customer_list, name="customer_list_url"),
+    path("list", customer_list, name="customer_list_url"),
 ]
