@@ -156,5 +156,12 @@ ACCOUNT_FORMS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bulma'
-
 LOGIN_REDIRECT_URL = "/dashboard/"
+
+# Set the static root to a file system path where you want to collect static files
+# STATIC_ROOT = BASE_DIR / 'static'
+
+# Make sure you have also set the STATIC_URL setting to specify the URL path for serving static files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"] 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 

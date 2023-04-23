@@ -1,0 +1,23 @@
+{% extends "main_base.html" %} 
+
+{% block main_base_content %}
+<div>
+ <!-- top bar -->  
+ {% include 'partials/topbar.html' %}
+ <div class="columns is-variable is-0">
+    <div>
+    <!-- side bar --> 
+    {% include 'partials/sidebar.html' %} 
+    </div>
+    <div
+      class="column is-10-desktop is-offset-2-desktop is-9-tablet is-offset-3-tablet is-12-mobile p-4"
+    >
+      <div class="mt-6">
+        <!-- dashboard contents -->  
+        {% block dashboard_section %}
+        {% endblock dashboard_section %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main_base_content %}
