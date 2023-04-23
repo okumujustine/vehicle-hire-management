@@ -4,7 +4,7 @@
       <p class="menu-label has-text-lighter">General</p>
       <ul class="menu-list">
         <li>
-          <a href="#" class="has-text-black">
+          <a href="#" class="{% if url == dashboard_home %} is-active has-background-primary {% else %} has-text-black {% endif %}">
             <i class="fas fa-tachometer-alt icon"></i>
             Dashboard</a
           >
@@ -15,22 +15,7 @@
         <li>
           <a href="#" class="is-active has-background-primary">
             <i class="fas fa-cogs icon"></i>
-            Settings</a
-          >
-        </li>
-      </ul>
-      <p class="menu-label has-text-lighter">Other</p>
-      <ul class="menu-list">
-        <li>
-          <a href="#" class="has-text-black">
-            <i class="fas fa-comments icon"></i>
-            Chats</a
-          >
-        </li>
-        <li>
-          <a href="#" class="has-text-black">
-            <i class="fas fa-info-circle icon"></i>
-            Extras</a
+            Vehicles</a
           >
         </li>
       </ul>
