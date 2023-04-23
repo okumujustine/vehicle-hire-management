@@ -4,7 +4,7 @@
       <p class="menu-label has-text-lighter">General</p>
       <ul class="menu-list">
         <li>
-          <a href="#" class="{% if url == dashboard_home %} is-active has-background-primary {% else %} has-text-black {% endif %}">
+          <a href="{% url  'dashboard_app:dashboard_home_url' %}" class="{% if request.path == '/dashboard/' %} is-active has-background-primary {% else %} has-text-black {% endif %}">
             <i class="fas fa-tachometer-alt icon"></i>
             Dashboard</a
           >
@@ -13,7 +13,7 @@
       <p class="menu-label has-text-lighter">Administration</p>
       <ul class="menu-list">
         <li>
-          <a href="#" class="is-active has-background-primary">
+          <a href="{% url  'customer_app:customer_list_url' %}" class="{% if request.path == '/customer/list' %} is-active has-background-primary {% else %} has-text-black {% endif %}">
             <i class="fas fa-cogs icon"></i>
             Vehicles</a
           >
