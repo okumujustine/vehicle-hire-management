@@ -6,4 +6,4 @@ class Vehicle(models.Model):
     nick_name = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self) -> str:
-        return f'{self.number_plate}'
+        return f"{self.number_plate}"
