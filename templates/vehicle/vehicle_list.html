@@ -1,12 +1,20 @@
-{% extends "dashboard/dasboard_base.html" %} {% block dashboard_section %}
+{% extends "dashboard/dasboard_base.html" %} 
+{% load crispy_forms_tags %}
+
+
+{% block dashboard_section %}
 <div class="pt-6">
   <div id="modal-js-example" class="modal">
     <div class="modal-background"></div>
 
-    <div class="modal-content">
+    <div class="modal-content p-3">
       <div class="box">
-        <p>Modal JS example</p>
-        <!-- Your content -->
+        <p class="title">Create a Vehicle</p>
+        <form action="" method='post'>
+            {% csrf_token %} 
+            {{ creat_vehicle_form | crispy }}
+            <button class="button has-background-primary has-text-white" type="submit">Create Vehicle</button>
+        </form>
       </div>
     </div>
 
