@@ -1,7 +1,29 @@
 {% extends "dashboard/dasboard_base.html" %} {% block dashboard_section %}
-<div>
-  <div class="section">
+<div class="pt-6">
+  <div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>
+
+    <div class="modal-content">
+      <div class="box">
+        <p>Modal JS example</p>
+        <!-- Your content -->
+      </div>
+    </div>
+
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <div class="section mt-2">
     <div class="container">
+      <div>
+        <button
+          class="button mb-3 has-background-primary has-text-white js-modal-trigger"
+          data-target="modal-js-example"
+        >
+          Create Vehicle
+        </button>
+      </div>
+
       <div class="columns">
         {% for vehicle in vehicles %}
         <div class="column is-3">
