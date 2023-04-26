@@ -3,30 +3,49 @@
 
 
 {% block dashboard_section %}
-<div class="pt-6">
-  <div id="modal-js-example" class="modal">
+<div>
+  <!-- Create vehicle modal -->
+  <div id="add-vehicle-modal" class="modal">
     <div class="modal-background"></div>
-
-    <div class="modal-content p-3">
-      <div class="box">
-        <p class="title">Create a Vehicle</p>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create a Vehicle</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
         <form action="" method='post'>
             {% csrf_token %} 
             {{ creat_vehicle_form | crispy }}
             <button class="button has-background-primary has-text-white" type="submit">Create Vehicle</button>
         </form>
-      </div>
+      </section>
     </div>
-
-    <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-  <div class="section mt-2">
+  <!-- Delete vehicle modal -->
+  <div id="delete-vehicle-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Delete a Vehicle</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <form action="" method='post'>
+            {% csrf_token %} 
+            {{ creat_vehicle_form | crispy }}
+            <button class="button has-background-primary has-text-white" type="submit">Create Vehicle</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <div class="section">
     <div class="container">
       <div>
         <button
           class="button mb-3 has-background-primary has-text-white js-modal-trigger"
-          data-target="modal-js-example"
+          data-target="add-vehicle-modal"
         >
           Create Vehicle
         </button>
@@ -62,9 +81,15 @@
                 </div>
               </div>
             </div>
-            <footer class="card-footer">
+            <footer class="card-footer p-1">
               <a href="#" class="card-footer-item">Edit</a>
-              <a href="#" class="card-footer-item">Delete</a>
+              <a href="{% url 'vehicle_app:delete_vehicle_url' vehicle.id %}" class="card-footer-item">Delete</a>
+              {% comment %} <button
+              class="button card-footer-item js-modal-trigger"
+              data-target="delete-vehicle-modal"
+              >
+               Delete
+              </button> {% endcomment %}
             </footer>
           </div>
         </div>

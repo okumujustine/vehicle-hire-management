@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from vehicle.models import Vehicle
@@ -17,3 +17,10 @@ def vehicle_list(request):
 
     context = {"vehicles": all_vehicles, "creat_vehicle_form": VehicleForm()}
     return render(request, "vehicle/vehicle_list.html", context)
+
+
+@login_required
+def delete_vehicle(request, vehicle_id):
+    vehicle_to_delete = Vehicle.objects.get(pk=vehicle_id)
+    vehicle_to_delete.delete()
+    return redirect("vehicle_app:vehicle_list_url")

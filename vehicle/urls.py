@@ -1,9 +1,10 @@
 from django.urls import path
 
-from vehicle.views import vehicle_list
+from vehicle.views import vehicle_list, delete_vehicle
 
 app_name = "vehicle_app"
 
 urlpatterns = [
     path("list", vehicle_list, name="vehicle_list_url"),
+    path("delete_vehicle/<vehicle_id>", delete_vehicle, name="delete_vehicle_url")
 ]
