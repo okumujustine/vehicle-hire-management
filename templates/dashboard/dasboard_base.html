@@ -11,18 +11,11 @@
 
     <main class="content">
       <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3">{% block dashboard_title %}{% endblock dashboard_title %}</h1>
         <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h1 class="mb-0 h3">{% block dashboard_title %}{% endblock dashboard_title %}</h1>
-              </div>
-              <div class="card-body">
-                {% block dashboard_section %}
-                {% endblock dashboard_section %}
-              </div>
-            </div>
-          </div>
+          {% block dashboard_section %}
+          {% endblock dashboard_section %}
         </div>
 
       </div>
