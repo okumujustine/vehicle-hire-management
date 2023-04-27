@@ -1,0 +1,13 @@
+{% extends "dashboard/dasboard_base.html" %} 
+{% load crispy_forms_tags %}
+
+
+{% block dashboard_section %}
+<div>
+    <form action="" method='post'>
+        {% csrf_token %} 
+        {{ vehicle_form | crispy }}
+        <button class="button has-background-primary has-text-white" type="submit">Update Vehicle</button>
+    </form>
+</div>
+{% endblock dashboard_section %}

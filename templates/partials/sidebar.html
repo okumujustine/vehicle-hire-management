@@ -27,7 +27,12 @@
         <li>
           <a
             href="{% url  'vehicle_app:vehicle_list_url' %}"
-            class="{% if request.path == '/vehicle/list' %} is-active has-background-primary {% else %} has-text-black {% endif %}"
+            class="
+            {% if request.path == '/vehicle/list' or request.path == '/vehicle/add' or request.path == '/vehicle/update/' %} 
+              is-active has-background-primary 
+            {% else %} 
+            has-text-black 
+            {% endif %}"
           >
             <i class="fas fa-cogs icon"></i>
             Vehicles</a
