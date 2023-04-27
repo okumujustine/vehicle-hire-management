@@ -1,9 +1,13 @@
-{% extends "dashboard/dasboard_base.html" %} {% block dashboard_section %}
+{% extends "dashboard/dasboard_base.html" %} 
+
+{% block dashboard_title %}Customers list{% endblock dashboard_title %}
+
+{% block dashboard_section %}
 <div>
   <div>
     <a
       href="{% url 'customer_app:add_customer_url' %}"
-      class="button mb-5 has-background-primary has-text-white js-modal-trigger"
+      class="btn btn-primary mb-4"
       data-target="add-vehicle-modal"
     >
       Create a customer
@@ -30,8 +34,8 @@
         <td>{{customer.phone}}</td>
         <td>{{customer.phone_option}}</td>
         <td>
-          <a href="" class="button mx-2">update</a>
-          <a href="" class="button is-danger mx-2">delete</a>
+          <a href="" class="btn mx-2 btn-success">update</a>
+          <a href="" class="btn btn-danger mx-2">delete</a>
         </td>
       </tr>
       {% endfor %}
