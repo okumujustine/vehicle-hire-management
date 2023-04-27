@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "crispy_forms",
-    "crispy_bulma",
+    "crispy_bootstrap5",
     "user",
     "dashboard",
     "vehicle",
@@ -154,7 +154,8 @@ ACCOUNT_FORMS = {
     "signup": "user.forms.CustomSignupForm",
 }
 
-CRISPY_TEMPLATE_PACK = "bulma"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Set the static root to a file system path where you want to collect static files

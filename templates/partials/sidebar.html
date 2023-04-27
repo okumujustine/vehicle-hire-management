@@ -1,44 +1,51 @@
-<div class="menu-container px-1 has-background-white">
-  <div class="menu-wrapper py-1">
-    <aside class="menu">
-      <p class="menu-label has-text-lighter">General</p>
-      <ul class="menu-list">
-        <li>
-          <a
-            href="{% url  'dashboard_app:dashboard_home_url' %}"
-            class="{% if request.path == '/dashboard/' %} is-active has-background-primary {% else %} has-text-black {% endif %}"
-          >
-            <i class="fas fa-tachometer-alt icon"></i>
-            Dashboard</a
-          >
-        </li>
-      </ul>
-      <p class="menu-label has-text-lighter">Administration</p>
-      <ul class="menu-list">
-        <li class="mb-2">
-          <a
-            href="{% url  'customer_app:customer_list_url' %}"
-            class="{% if request.path == '/customer/list' %} is-active has-background-primary {% else %} has-text-black {% endif %}"
-          >
-            <i class="fas fa-cogs icon"></i>
-            Customers</a
-          >
-        </li>
-        <li>
-          <a
-            href="{% url  'vehicle_app:vehicle_list_url' %}"
-            class="
-            {% if request.path == '/vehicle/list' or request.path == '/vehicle/add' or request.path == '/vehicle/update/' %} 
-              is-active has-background-primary 
-            {% else %} 
-            has-text-black 
-            {% endif %}"
-          >
-            <i class="fas fa-cogs icon"></i>
-            Vehicles</a
-          >
-        </li>
-      </ul>
-    </aside>
+<nav id="sidebar" class="sidebar js-sidebar">
+  <div class="sidebar-content js-simplebar">
+    <a class="sidebar-brand" href="{% url  'dashboard_app:dashboard_home_url' %}">
+      <span class="align-middle">DIGI TP</span>
+    </a>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-header">
+        Actions
+      </li>
+
+      <li class="
+      sidebar-item 
+      {% if request.path == '/dashboard/' %}
+        active
+      {% endif %}
+      ">
+        <a class="sidebar-link" href="{% url  'dashboard_app:dashboard_home_url' %}">
+          <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="sidebar-header">
+        Actions
+      </li>
+
+      <li class="
+      sidebar-item
+      {% if request.path == '/customer/list' or request.path == '/customer/add' %} 
+        active
+      {% endif %}
+      ">
+        <a class="sidebar-link" href="{% url  'customer_app:customer_list_url' %}">
+          <i class="align-middle" data-feather="users"></i> <span class="align-middle">Customers</span>
+        </a>
+      </li>
+
+      <li class="
+      sidebar-item
+      {% if request.path == '/vehicle/list' or request.path == '/vehicle/add' or request.path == '/vehicle/update/' %} 
+        active
+      {% endif %}
+      ">
+        <a class="sidebar-link"  href="{% url  'vehicle_app:vehicle_list_url' %}">
+          <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Vehicles</span>
+        </a>
+      </li>
+
+    </ul>
   </div>
-</div>
+</nav>

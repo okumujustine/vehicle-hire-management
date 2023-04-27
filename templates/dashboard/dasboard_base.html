@@ -1,42 +1,28 @@
 {% extends "main_base.html" %} 
 
 {% block main_base_content %}
-<div>
- <!-- top bar -->  
- {% include 'partials/topbar.html' %}
- <div class="columns is-variable is-0">
-    <div>
-    <!-- side bar --> 
-    {% include 'partials/sidebar.html' %} 
-    </div>
-    <div
-      class="column is-10-desktop is-offset-2-desktop is-9-tablet is-offset-3-tablet is-12-mobile p-4"
-    >
-      <div class="mt-6">
-        <!-- dashboard contents -->  
-        <div class="section">
-          <div class="container">
-            {% for message in messages %}
-              <div class="mb-6">
-                <div 
-                  class="notification  is-light
-                  {% if message.tags == 'success' %}
-                    is-success
-                  {% elif message.tags == 'error' %}
-                    is-danger
-                  {% endif %}
-                  ">
-                  <button class="delete"></button>
-                  {{message}}
-                </div>
-              </div>
-            {% endfor %}
+<div class="wrapper">
+  <!-- sidebar -->
+  {% include 'partials/sidebar.html' %} 
+  
+  <div class="main">
+    <!-- topbar -->
+    {% include 'partials/topbar.html' %} 
+
+    <main class="content">
+      <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+        <div>
           {% block dashboard_section %}
           {% endblock dashboard_section %}
-          </div>
         </div>
+
       </div>
-    </div>
+    </main>
+
+    <!-- footer -->
+    {% include 'partials/footer.html' %} 
   </div>
 </div>
 {% endblock main_base_content %}
