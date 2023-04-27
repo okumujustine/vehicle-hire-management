@@ -1,5 +1,41 @@
 {% extends "dashboard/dasboard_base.html" %} {% block dashboard_section %}
 <div>
-  <p>customer list</p>
+  <div>
+    <a
+      href="{% url 'vehicle_app:add_vehicle_url' %}"
+      class="button mb-5 has-background-primary has-text-white js-modal-trigger"
+      data-target="add-vehicle-modal"
+    >
+      Create a customer
+  </a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>type</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Contact option</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{customer.name}}</td>
+        <td>{{customer.type}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.phone}}</td>
+        <td>{{customer.phone_option}}</td>
+        <td>
+          <a href="" class="button mx-2">update</a>
+          <a href="" class="button is-danger mx-2">delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock dashboard_section %}

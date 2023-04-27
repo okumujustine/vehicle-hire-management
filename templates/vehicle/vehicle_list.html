@@ -4,12 +4,10 @@
 
 {% block dashboard_section %}
 <div>
-  <div class="section">
-    <div class="container">
       <div>
         <a
           href="{% url 'vehicle_app:add_vehicle_url' %}"
-          class="button mb-3 has-background-primary has-text-white js-modal-trigger"
+          class="button mb-5 has-background-primary has-text-white js-modal-trigger"
           data-target="add-vehicle-modal"
         >
           Create Vehicle
@@ -54,7 +52,5 @@
         </div>
         {% endfor %}
       </div>
-    </div>
-  </div>
 </div>
 {% endblock dashboard_section %}
