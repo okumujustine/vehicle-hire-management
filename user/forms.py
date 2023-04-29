@@ -1,8 +1,8 @@
-from allauth.account.forms import SignupForm
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 
-class CustomSignupForm(SignupForm):
+class CustomSignupForm():
     first_name = forms.CharField(
         max_length=255,
         label="First Name",
@@ -27,8 +27,32 @@ class CustomSignupForm(SignupForm):
         return last_name
 
     def save(self, request):
-        user = super(CustomSignupForm, self).save(request)
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.save()
-        return user
+        print("save user")
+
+
+class CustomLoginForm(forms.Form):
+    email = forms.EmailField(
+        max_length=255,
+        label="Email",
+        widget=forms.TextInput(attrs={"placeholder": "Email address", "required": "false"}),
+    )
+    password = forms.CharField(
+        max_length=255,
+        label="Password",
+        widget=forms.TextInput(attrs={"placeholder": "Password", "required": "false"}),
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if not email:
+            raise forms.ValidationError("Email is required.")
+        return email
+
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+        if not password:
+            raise forms.ValidationError("Password is required.")
+        return password
+
+    def save(self, request):
+        print("login user")
