@@ -46,6 +46,17 @@
         </a>
       </li>
 
+      <li class="
+      sidebar-item
+      {% if request.path == '/order/list' %} 
+        active
+      {% endif %}
+      ">
+        <a class="sidebar-link"  href="{% url  'order_app:order_list_url' %}">
+          <i class="align-middle" data-feather="list"></i> <span class="align-middle">Orders</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 </nav>
