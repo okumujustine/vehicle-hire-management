@@ -9,7 +9,6 @@ from vehicle.forms import VehicleForm
 @login_required
 def vehicle_list(request):
     all_vehicles = Vehicle.objects.all()
-
     context = {"vehicles": all_vehicles}
     return render(request, "vehicle/vehicle_list.html", context)
 
@@ -22,11 +21,12 @@ def delete_vehicle(request, vehicle_id):
 
 
 def add_vehicle(request):
-    # perform vehicle creation
     if request.method == 'POST':
+        number_plate = request.POST['number_plate']
         form_to_save = VehicleForm(request.POST)
         if form_to_save.is_valid():
             form_to_save.save()
+            messages.info(request, "Vehicle with number plate {} created successfully".format(number_plate))
     context = {"creat_vehicle_form": VehicleForm()}
     return render(request, "vehicle/add_vehicle.html", context)
 

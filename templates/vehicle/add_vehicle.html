@@ -4,10 +4,13 @@
 
 {% block dashboard_section %}
 <div>
+    <div class="mb-4">
+        <a href="{% url "vehicle_app:vehicle_list_url" %}" class="btn btn-outline-primary">Back</a>
+    </div>
     <form action="" method='post'>
         {% csrf_token %} 
         {{ creat_vehicle_form | crispy }}
-        <button class="button has-background-primary has-text-white" type="submit">Create Vehicle</button>
+        <button class="btn btn-primary" type="submit">Create Vehicle</button>
     </form>
 </div>
 {% endblock dashboard_section %}
