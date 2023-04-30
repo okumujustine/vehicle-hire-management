@@ -8,6 +8,8 @@ from user.models import CustomUser
 
 
 def login(request):
+    company_id = request.session.get('company_id')
+    print("company", company_id)
     if request.method == 'POST':
         login_form = CustomLoginForm(request.POST)
         if login_form.is_valid():

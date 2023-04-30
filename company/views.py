@@ -1,26 +1,39 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.db.models import Prefetch
 
 from company.models import Company
 from digi_tp.utils.session import check_session, check_session_and_user
-from user.models import CustomUser
+from django.contrib.auth import authenticate, login
 
 
 def company_auth_list(request):
 
     if request.method == 'POST':
         current_auth_session = check_session(request)
+        if not check_session(request):
+            messages.error(request, "Invalid or expired session, login again")
+            return redirect("user_app:user_login_url")
+
         selected_company_id = request.POST.get('company')
         if not selected_company_id:
             messages.error(request, "A company must be selected")
-        print(selected_company_id)
-        print(current_auth_session)
-        # login user
-        # set their current company id to session
+
+        user = authenticate(
+            request=request,
+            username=current_auth_session["email"],
+            password=current_auth_session["password"],
+            company_id=selected_company_id
+        )
+        if user is not None:
+            login(request, user)
+            return redirect("dashboard_app:dashboard_home_url")
+        else:
+            messages.error(request, "Invalid email or password")
+            return redirect("user_app:user_login_url")
 
     user = check_session_and_user(request)
     if not user:
+        messages.error(request, "Invalid or expired session, login again")
         return redirect("user_app:user_login_url")
 
     companies = Company.objects.filter(companyuser__user=user).prefetch_related('companyuser_set')
