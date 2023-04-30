@@ -5,11 +5,13 @@
 {% block auth_title %} Sign in {% endblock auth_title %}
 
 {% block auth_section %}
-
+<div>
+  {% include 'account/auth_message.html' %}
+</div>
 <form class="login" method="POST" action="">
   {% csrf_token %}
   {{ form | crispy}}
-  <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+  <button class="btn btn-primary" type="submit">{% trans "Continue" %}</button>
 </form>
 <p class="pt-4">Don't have an account?, <a href="{% url "user_app:user_register_url" %}">sign up</a> </p>
 

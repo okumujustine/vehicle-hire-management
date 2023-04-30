@@ -1,0 +1,18 @@
+{% extends "account/account_base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block auth_title %} Pick company {% endblock auth_title %}
+
+{% block auth_section %}
+
+<div>
+    {% for companies_and_role in companies_and_roles %}
+        <div>{{companies_and_role.company_name}}</div>
+        <div>{{companies_and_role.user_role}}</div>
+        <hr/>
+    {% endfor %}
+</div>
+<p class="pt-4">Don't have an account?, <a href="{% url "user_app:user_register_url" %}">sign up</a> </p>
+
+{% endblock auth_section  %}

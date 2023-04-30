@@ -11,4 +11,5 @@ urlpatterns = [
     path("customer/", include("customer.urls", namespace="customer_app")),
     path("vehicle/", include("vehicle.urls", namespace="vehicle_app")),
     path("order/", include("order.urls", namespace="order_app")),
+    path("company/", include("company.urls", namespace="company_app")),
 ]

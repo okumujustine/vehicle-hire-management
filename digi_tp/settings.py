@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "vehicle",
     "customer",
     "order",
+    "company",
 ]
 
 MIDDLEWARE = [
@@ -131,13 +132,11 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "user.CustomUser"
-
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
 ]
+AUTH_USER_MODEL = "user.CustomUser"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
