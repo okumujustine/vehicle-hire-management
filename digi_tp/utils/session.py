@@ -10,16 +10,16 @@ def check_session(request):
 
     if not (email and password and login_timestamp):
         messages.error(request, "Session expired or invalid request")
-        return False
+        return None
 
     if (timezone.now().timestamp() - login_timestamp) > 1800:
         del request.session['email']
         del request.session['password']
         del request.session['login_timestamp']
         messages.error(request, "Session expired, login again")
-        return False
+        return None
 
-    return True
+    return {'email': email, 'password': password, 'login_timestamp': login_timestamp}
 
 
 def check_session_and_user(request):

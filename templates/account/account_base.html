@@ -17,6 +17,9 @@
                     <h1 class="h2">{% block auth_title %}{% endblock auth_title %}</h1>
                   </div>
                   <div>
+                    <div>
+                      {% include 'account/auth_message.html' %}
+                    </div>
                     {% block auth_section %}
                     {% endblock auth_section %}
                   </div>

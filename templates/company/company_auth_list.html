@@ -7,11 +7,14 @@
 {% block auth_section %}
 
 <div>
-    {% for companies_and_role in companies_and_roles %}
-        <div>{{companies_and_role.company_name}}</div>
-        <div>{{companies_and_role.user_role}}</div>
-        <hr/>
-    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {% for company_and_role in companies_and_roles %}
+            <input type="radio" name="company" value="{{ company_and_role.company_id }}" id="{{ company_and_role.company_name }}">
+            <label for="{{ company_and_role.company_name }}">{{ company_and_role.company_name }}</label><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
 </div>
 <p class="pt-4">Don't have an account?, <a href="{% url "user_app:user_register_url" %}">sign up</a> </p>
 
