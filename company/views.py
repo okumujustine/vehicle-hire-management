@@ -16,6 +16,8 @@ def company_auth_list(request):
             messages.error(request, "A company must be selected")
         print(selected_company_id)
         print(current_auth_session)
+        # login user
+        # set their current company id to session
 
     user = check_session_and_user(request)
     if not user:
