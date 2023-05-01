@@ -157,3 +157,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# auth related settings
+LOGIN_URL = '/user/login/'

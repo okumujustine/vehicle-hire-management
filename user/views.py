@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth import logout
 
 from digi_tp.utils.message import MessageTypeExtraTags
 from user.forms import CustomLoginForm, CustomSignupForm
 from user.models import CustomUser
 
 
+def not_authenticated(user):
+    return not user.is_authenticated
+
+
+@user_passes_test(not_authenticated, login_url='/dashboard/')
 def login(request):
+    print("request", request.user)
     company_id = request.session.get('company_id')
     print("company", company_id)
     if request.method == 'POST':
@@ -34,6 +42,7 @@ def login(request):
     return render(request, "account/login.html", context={"form": login_form})
 
 
+@user_passes_test(not_authenticated, login_url='/dashboard/')
 def signup(request):
     if request.method == "POST":
         signup_form = CustomSignupForm(request.POST)
@@ -48,3 +57,8 @@ def signup(request):
         signup_form = CustomSignupForm()
 
     return render(request, "account/signup.html", context={"form": signup_form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("user_app:user_login_url")
