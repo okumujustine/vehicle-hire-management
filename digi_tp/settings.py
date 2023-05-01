@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,9 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "crispy_forms",
     "crispy_bootstrap5",
     "user",
@@ -49,6 +47,7 @@ INSTALLED_APPS = [
     "vehicle",
     "customer",
     "order",
+    "company",
 ]
 
 MIDDLEWARE = [
@@ -134,26 +133,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "user.CustomUser"
-
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
+    "user.auth.backends.email_authentication.EmailAuthentication",
     "django.contrib.auth.backends.ModelBackend",
-    # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
 ]
-SITE_ID = 1
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-
-# Control the forms that django-allauth uses
-ACCOUNT_FORMS = {
-    # Use our custom signup form
-    "signup": "user.forms.CustomSignupForm",
-}
+AUTH_USER_MODEL = "user.CustomUser"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -166,3 +151,12 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+# django message settings
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+# auth related settings
+LOGIN_URL = '/user/login/'

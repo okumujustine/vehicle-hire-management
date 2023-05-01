@@ -1,11 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import UserManager, AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 
 
 # Create your models here.
-class CustomUserManager(UserManager):
+class CustomUserManager(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
+        print("my object")
         if not email:
             raise ValueError("Email address must be provided")
 
@@ -16,13 +17,16 @@ class CustomUserManager(UserManager):
 
         return user
 
-    def create_user(self, email=None, password=None, **extra_fields):
+    def create_user(self, email, password, **extra_fields):
+        print("yes yesr")
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
+        extra_fields.setdefault("is_active", True)
 
         return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self, email=None, password=None, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
+        print("yes yes admin")
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
