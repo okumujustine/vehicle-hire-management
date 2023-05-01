@@ -15,9 +15,6 @@ def not_authenticated(user):
 
 @user_passes_test(not_authenticated, login_url='/dashboard/')
 def login(request):
-    print("request", request.user)
-    company_id = request.session.get('company_id')
-    print("company", company_id)
     if request.method == 'POST':
         login_form = CustomLoginForm(request.POST)
         if login_form.is_valid():
@@ -61,4 +58,5 @@ def signup(request):
 
 def logout_view(request):
     logout(request)
+    del request.session['company_id']
     return redirect("user_app:user_login_url")

@@ -16,6 +16,7 @@ class EmailAuthentication(BaseBackend):
             user = UserModel.objects.get(Q(email__iexact=username))
             if user.check_password(password):
                 request.session['company_id'] = company_id
+                request.current_company_id = company_id
                 return user
         except UserModel.DoesNotExist:
             return None

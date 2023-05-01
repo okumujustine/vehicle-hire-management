@@ -1,5 +1,7 @@
 from django.db import models
 
+from digi_tp.utils.models import DigiTpBaseModelWithUserAndCompany
+
 
 class CustomerTypes(models.TextChoices):
     PERSONAL = "Personal"
@@ -7,7 +9,7 @@ class CustomerTypes(models.TextChoices):
     GROUP = "Group"
 
 
-class Customer(models.Model):
+class Customer(DigiTpBaseModelWithUserAndCompany):
     name = models.CharField(max_length=100, null=False, blank=False)
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=50, null=False, blank=False)

@@ -58,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "digi_tp.middleware.auth.RedirectSuperUserMiddleware"
 ]
 
 ROOT_URLCONF = "digi_tp.urls"
@@ -160,3 +161,6 @@ MESSAGE_TAGS = {
 
 # auth related settings
 LOGIN_URL = '/user/login/'
+
+
+SITE_ID = 1
