@@ -9,7 +9,7 @@ from vehicle.forms import VehicleForm
 
 @login_required
 def vehicle_list(request):
-    all_vehicles = Vehicle.objects.all()
+    all_vehicles = Vehicle.objects.filter(company=request.company_id)
     context = {"vehicles": all_vehicles}
     return render(request, "vehicle/vehicle_list.html", context)
 
@@ -29,10 +29,10 @@ def add_vehicle(request):
             vehicle = form.save(commit=False)
             vehicle.created_by = request.user
             vehicle.updated_by = request.user
-            company_id = request.session.get('company_id')
-            if company_id:
-                company = Company.objects.get(id=company_id)
-                vehicle.company = company
+
+            company = Company.objects.get(id=request.company_id)
+            vehicle.company = company
+
             vehicle.save()
             messages.info(request, "Vehicle with number plate {} created successfully".format(number_plate))
     context = {"creat_vehicle_form": VehicleForm()}

@@ -9,8 +9,7 @@ from customer.forms import CustomerForm
 
 @login_required
 def customer_list(request):
-    company_id = request.session.get('company_id')
-    customers = Customer.objects.filter(company=company_id)
+    customers = Customer.objects.filter(company=request.company_id)
     context = {"customers": customers}
     return render(request, "customer/customer_list.html", context)
 
@@ -23,10 +22,10 @@ def add_customer(request):
             customer = form.save(commit=False)
             customer.created_by = request.user
             customer.updated_by = request.user
-            company_id = request.session.get('company_id')
-            if company_id:
-                company = Company.objects.get(id=company_id)
-                customer.company = company
+
+            company = Company.objects.get(id=request.company_id)
+            customer.company = company
+
             customer.save()
 
             messages.success(request, 'Customer created successfully.')
