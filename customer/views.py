@@ -10,10 +10,6 @@ from customer.forms import CustomerForm
 @login_required
 def customer_list(request):
     company_id = request.session.get('company_id')
-    print("company_id", company_id)
-    print("request_user", request.user)
-    current_company_id = getattr(request, 'current_company_id', None)
-    print("current_company_id", current_company_id)
     customers = Customer.objects.filter(company=company_id)
     context = {"customers": customers}
     return render(request, "customer/customer_list.html", context)

@@ -1,5 +1,7 @@
 from django.db import models
 
+from digi_tp.utils.models import DigiTpBaseModelWithUserAndCompany
+
 
 class VehicleTypes(models.TextChoices):
     SUV = "Suv"
@@ -11,7 +13,7 @@ class VehicleModels(models.TextChoices):
     PRADO = "prado"
 
 
-class Vehicle(models.Model):
+class Vehicle(DigiTpBaseModelWithUserAndCompany):
     number_plate = models.CharField(max_length=50, null=False, blank=False)
     nick_name = models.CharField(max_length=50, null=True, blank=True)
     vehcile_type = models.CharField(max_length=50, choices=VehicleTypes.choices, default="default type")
