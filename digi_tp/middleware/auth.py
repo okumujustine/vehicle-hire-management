@@ -1,6 +1,8 @@
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
+
+from company.models import Company
 
 
 class RedirectSuperUserMiddleware:
@@ -21,10 +23,20 @@ class CompanyMiddleware:
 
     def __call__(self, request):
         company_id = request.session.get('company_id')
-        if request.user.is_authenticated and not company_id and not request.path.startswith(reverse('admin:index')):
-            messages.warning(request, 'Please select a company to access this page')
-            return redirect(reverse('user_app:user_login_url'))
+        if not request.path.startswith(reverse('admin:index')):
+            if request.user.is_authenticated and not company_id:
+                messages.warning(request, 'Session expired, login again')
+                return redirect(reverse('user_app:user_login_url'))
 
-        request.company_id = company_id
+            if request.user.is_authenticated:
+                request.company_id = company_id
+                current_company = get_object_or_404(Company, id=company_id)
+                request.current_company = current_company
+
         response = self.get_response(request)
+        return response
+
+    def process_template_response(self, request, response):
+        if not request.path.startswith(reverse('admin:index')):
+            response.context_data['current_company'] = request.current_company
         return response

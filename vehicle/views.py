@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from company.models import Company
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
 
+from company.models import Company
 from vehicle.models import Vehicle
 from vehicle.forms import VehicleForm
 
@@ -12,6 +14,18 @@ def vehicle_list(request):
     all_vehicles = Vehicle.objects.filter(company=request.company_id)
     context = {"vehicles": all_vehicles}
     return render(request, "vehicle/vehicle_list.html", context)
+
+
+class VehicleListView(LoginRequiredMixin, ListView):
+    model = Vehicle
+    template_name = 'orders/vehicle_list.html'
+    context_object_name = 'vehicles'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(company=self.request.current_company)
+        return queryset
 
 
 @login_required

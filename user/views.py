@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 from digi_tp.utils.message import MessageTypeExtraTags
 from user.forms import CustomLoginForm, CustomSignupForm
@@ -56,7 +57,8 @@ def signup(request):
     return render(request, "account/signup.html", context={"form": signup_form})
 
 
+@login_required
 def logout_view(request):
-    logout(request)
     del request.session['company_id']
+    logout(request)
     return redirect("user_app:user_login_url")

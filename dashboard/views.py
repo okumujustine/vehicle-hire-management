@@ -9,5 +9,4 @@ def dashboard_index(request):
 
 @login_required
 def dashboard_home(request):
-    print("company_id", request.company_id)
     return render(request, "dashboard/dashboard_home.html")
