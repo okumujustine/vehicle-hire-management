@@ -1,10 +1,37 @@
 {% extends "dashboard/dasboard_base.html" %} 
-{% load crispy_forms_tags %}
-
-{% block dashboard_title %}List of orders{% endblock dashboard_title %}
 
 {% block dashboard_section %}
-<div>
-    List of orders
+<div class="card p-4">
+    <div>
+      <a
+        href="{% url 'order_app:order_create_url' %}"
+        class="btn btn-primary mb-4"
+      >
+        Create Order
+    </a>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td> <a href="">{{order.title}}</a></td>
+              <td>
+                <a href="" class="btn btn-primary mx-2">details</a>
+                <a href="" class="btn mx-2 btn-success">update</a>
+                <a href="" class="btn btn-danger mx-2">delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table> 
+    </div>
 </div>
 {% endblock dashboard_section %}

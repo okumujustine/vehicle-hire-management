@@ -1,6 +1,13 @@
 from django.contrib import admin
 
-from order.models import Order
+from import_export.admin import ImportExportModelAdmin
 
-# Register your models here.
-admin.site.register(Order)
+from order.models import Order
+from order.resource import OrderResource
+
+
+class OrderAdmin(ImportExportModelAdmin):
+    resource_class = OrderResource
+
+
+admin.site.register(Order, OrderAdmin)

@@ -1,0 +1,16 @@
+{% extends "dashboard/dasboard_base.html" %} 
+{% load crispy_forms_tags %}
+
+{% block dashboard_title %}Create Order{% endblock dashboard_title %}
+
+{% block dashboard_section %}
+<div>
+    <div class="row">
+        <form action="" method='post'>
+            {% csrf_token %} 
+            {{ form | crispy }}
+            <button class="btn btn-primary" type="submit">Create Order</button>
+        </form>
+    </div>
+</div>
+{% endblock dashboard_section %}

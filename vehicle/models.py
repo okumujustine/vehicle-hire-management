@@ -21,3 +21,6 @@ class Vehicle(DigiTpBaseModelWithUserAndCompany):
 
     def __str__(self) -> str:
         return f"{self.number_plate}"
+
+    class Meta:
+        ordering = ['id']

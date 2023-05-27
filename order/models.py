@@ -51,3 +51,6 @@ class Order(DigiTpBaseModelWithUserAndCompany):
         blank=False
     )
     currency = models.ForeignKey(Currency, on_delete=models.PROTECT)
+
+    def __str__(self) -> str:
+        return self.title
