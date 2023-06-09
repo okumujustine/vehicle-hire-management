@@ -115,3 +115,5 @@ cython_debug/
 !.vscode/extensions.json 
 .history
 .vscode
+
+/data

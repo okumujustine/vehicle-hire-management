@@ -28,6 +28,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(int(os.environ.get("DEBUG", 0)))
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
 
 
 # Application definition
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "import_export",
     
+    "core",
     "user",
     "dashboard",
     "vehicle",
@@ -92,8 +99,11 @@ WSGI_APPLICATION = "digi_tp.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ.get("DB_HOST"),
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASS"),
     }
 }
 
@@ -151,12 +161,17 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Set the static root to a file system path where you want to collect static files
-# STATIC_ROOT = BASE_DIR / 'static'
 
 # Make sure you have also set the STATIC_URL setting to specify the URL path for serving static files
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# STATIC_URL = "/static/static/"
+# MEDIA_URL = "/static/media/"
+
+# MEDIA_ROOT = "/vol/web/media"
+# STATIC_ROOT = "/vol/web/static"
 
 
 # django message settings

@@ -1,14 +1,20 @@
 version: '3.8'
 services:
   app:
-    build: .
-    volumes:
-      - ./:/digi_tp
+    build:
+      context: .
+    command: >
+      sh -c "
+      python manage.py wait_for_db &&
+      python manage.py collectstatic &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000
+      "
     ports:
       - 8000:8000
-    image: digi_tp:1.0
-    container_name: digi_tp_vehicle_management
-    command: gunicorn digi_tp.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - ./staticfiles:/staticfiles
     environment:
       - DEBUG=1
       - SECRET_KEY=thesecretkey
@@ -20,12 +26,8 @@ services:
       - db
 
   db:
-    image: postgres:15-alpine
-    restart: always
-    container_name: digi_tp_vehicle_management_db
+    image: postgres:13-alpine
     environment:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devdbuser
       - POSTGRES_PASSWORD=devdbpassword
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
