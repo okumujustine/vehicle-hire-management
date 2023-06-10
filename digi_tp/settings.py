@@ -167,11 +167,8 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# STATIC_URL = "/static/static/"
-# MEDIA_URL = "/static/media/"
-
-# MEDIA_ROOT = "/vol/web/media"
-# STATIC_ROOT = "/vol/web/static"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # django message settings
