@@ -96,7 +96,6 @@ WSGI_APPLICATION = "digi_tp.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -163,12 +162,23 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 # Set the static root to a file system path where you want to collect static files
 
 # Make sure you have also set the STATIC_URL setting to specify the URL path for serving static files
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+
+# STATIC_URL = "/static/static/"
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATIC_ROOT = BASE_DIR / "vol/static"
+
+# MEDIA_URL = "/static/media/"
+# MEDIA_ROOT = BASE_DIR / "media"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
+
+MEDIA_ROOT = '/vol/web/media'
+STATIC_ROOT = '/vol/web/static'
+
 
 
 # django message settings
